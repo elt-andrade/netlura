@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <button id="theme-toggle" aria-label="Alternar modo claro/escuro">Modo claro</button>
+   <main>
+        <h1>Quem está assistindo?</h1>
+        <section class="profiles">
+            <ul class="container">
+                <li class="profile">
+                    
+                    <a href="catalogo/catalogo.html">
+                        <img src="/assets/perfil-1.jpg" alt="Mulher de pele clara e cabelos escuros compridos, ao fundo tem uma imagem de uma explosão com chamas">
+                    </a>
+                    <p>Milena</p>
+                </li>
+                <li class="profile">
+                    <a href="catalogo/catalogo.html">
+                        <img src="/assets/perfil-2.jpg" alt="Boné azul com fundo azul">
+                    </a>
+                    <p>Pippo</p>
+                </li>
+            </ul>
+        </section>
+   </main> 
+   <script>
+       const toggle = document.getElementById('theme-toggle');
+       const body = document.body;
+
+       const saveTheme = theme => localStorage.setItem('netflixTheme', theme);
+       const getTheme = () => localStorage.getItem('netflixTheme');
+
+       const updateButtonText = () => {
+           const active = body.classList.contains('light-theme') ? 'Claro' : 'Escuro';
+           toggle.textContent = `Modo ${active}`;
+       };
+
+       const applyTheme = theme => {
+           if (theme === 'light') {
+               body.classList.add('light-theme');
+           } else {
+               body.classList.remove('light-theme');
+           }
+           updateButtonText();
+       };
+
+       toggle.addEventListener('click', () => {
+           const nextTheme = body.classList.contains('light-theme') ? 'dark' : 'light';
+           applyTheme(nextTheme);
+           saveTheme(nextTheme);
+       });
+
+       // inicializa com o valor salvo ou dark por padrão
+       const initialTheme = getTheme() || 'dark';
+       applyTheme(initialTheme);
+
+       // funcionalidade para armazenar perfil ativo
+       const profiles = document.querySelectorAll('.profile');
+       profiles.forEach(profile => {
+           profile.addEventListener('click', () => {
+               const img = profile.querySelector('img');
+               const name = profile.querySelector('p').textContent;
+               const activeProfile = {
+                   name: name,
+                   image: img.src
+               };
+               localStorage.setItem('activeProfile', JSON.stringify(activeProfile));
+           });
+       });
+   </script>
+   <script src="js/index.js"></script>
+</body>
+</html>

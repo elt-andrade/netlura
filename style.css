@@ -1,0 +1,159 @@
+body {
+    --bg-color: #000;
+    --text-color: #fff;
+    --profile-border: transparent;
+    --profile-border-hover: #fff;
+    --button-bg: rgba(255, 255, 255, 0.1);
+    --button-text: #fff;
+
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.light-theme {
+    --bg-color: #f4f4f4;
+    --text-color: #121212;
+    --profile-border: transparent;
+    --profile-border-hover: #121212;
+    --button-bg: rgba(0, 0, 0, 0.08);
+    --button-text: #121212;
+}
+
+main {
+    /* Centraliza texto de conteúdo */
+    text-align: center;
+    /* Limita largura para layouts grandes */
+    max-width: 1200px;
+    /* Ocupa toda largura disponível em telas pequenas */
+    width: 100%;
+}
+
+h1 {
+    /* Tamanho grande para título */
+    font-size: 3rem;
+    /* Espaço abaixo do título */
+    margin-bottom: 2rem;
+    /* Peso mais leve, aparência Netflix */
+    font-weight: 300;
+}
+
+.profiles {
+    /* Exibe perfis em linha */
+    display: flex;
+    /* Mantém perfis centralizados */
+    justify-content: center;
+}
+
+.container {
+    /* Remove marcadores padrão da lista */
+    list-style: none;
+    /* Itens em linha flexível */
+    display: flex;
+    /* Espaçamento entre perfis */
+    gap: 2rem;
+    /* Remove padding padrão da lista */
+    padding: 0;
+    /* Permite quebrar em várias linhas se necessário */
+    flex-wrap: wrap;
+    /* Centraliza itens no container */
+    justify-content: center;
+}
+
+.profile {
+    /* Layout em coluna para imagem + nome */
+    display: flex;
+    flex-direction: column;
+    /* Centraliza horizontalmente dentro do item */
+    align-items: center;
+    /* Ícone clicável */
+    cursor: pointer;
+    /* Transição suave para interação */
+    transition: transform 0.3s ease;
+}
+
+.profile:hover {
+    /* Animação de zoom ao passar mouse */
+    transform: scale(1.05);
+}
+
+.profile img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--profile-border);
+    transition: border-color 0.3s ease;
+}
+
+.profile:hover img {
+    border-color: var(--profile-border-hover);
+}
+
+.profile p {
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+
+button#theme-toggle {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+button#theme-toggle:hover {
+    opacity: 0.85;
+}
+
+/* Responsividade para tablets */
+@media (max-width: 1024px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    .profile img {
+        width: 120px;
+        height: 120px;
+    }
+
+    .container {
+        gap: 1.5rem;
+    }
+}
+
+/* Responsividade para dispositivos móveis */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .profile img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .profile p {
+        font-size: 1rem;
+        margin-top: 0.5rem;
+    }
+
+    .container {
+        gap: 1rem;
+    }
+}
